@@ -1,0 +1,81 @@
+﻿@model IEnumerable<LMS.Models.User>
+
+@{
+    ViewData["Title"] = "مدیریت کاربران";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="user-container">
+
+    <div class="user-header">
+        <h2>👥 مدیریت کاربران</h2>
+
+        <a asp-action="Create" class="btn-add-user">
+            <i class="bi bi-plus-circle-fill"></i>
+            افزودن کاربر
+        </a>
+    </div>
+
+
+    <div class="table-box">
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+                <tr>
+                    <th>شناسه</th>
+                    <th>نام کاربری</th>
+                    <th>نقش</th>
+                    <th>عملیات</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>@item.UserID</td>
+
+                        <td>@item.UserName</td>
+
+                        <td>@item.Role</td>
+
+                        <td>
+
+                            <a asp-action="Edit"
+                               asp-route-id="@item.UserID"
+                               class="btn-edit">
+
+                                <i class="bi bi-pencil-fill"></i>
+                                ویرایش
+
+                            </a>
+
+
+                            <a asp-action="Delete"
+                               asp-route-id="@item.UserID"
+                               class="btn-delete"
+                               onclick="return confirm('آیا مطمئن هستید که می‌خواهید این کاربر را حذف کنید؟');">
+
+                                <i class="bi bi-trash-fill"></i>
+                                حذف
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

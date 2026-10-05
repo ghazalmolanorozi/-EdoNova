@@ -1,0 +1,172 @@
+﻿@model LMS.Models.Course
+
+@{
+    ViewData["Title"] = "مشاهده دوره";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<div class="dashboard-header">
+    <h2>📚 @Model.Title</h2>
+
+    <p>
+        مشاهده جلسات و محتوای آموزشی دوره
+    </p>
+
+</div><div class="dashboard-section">
+    <div class="course-icon">
+        📖
+    </div>
+
+    <h3 class="text-white mt-3">
+        @Model.Title
+    </h3>
+
+    <p class="text-secondary mt-3">
+        @Model.Description
+    </p>
+
+</div><div class="dashboard-section">
+    <div class="section-header">
+
+        <h4>🎬 جلسات دوره</h4>
+
+    </div>
+
+    @if (ViewBag.Lessons != null && ViewBag.Lessons.Count > 0)
+    {
+        <div class="table-responsive">
+
+            <table class="table course-table">
+
+                <thead>
+                    <tr>
+                        <th>ردیف</th>
+                        <th>عنوان جلسه</th>
+                        <th>توضیحات</th>
+                        <th>مشاهده</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @{
+                        int row = 1;
+                    }
+
+                    @foreach (var lesson in ViewBag.Lessons)
+                    {
+                        <tr>
+
+                            <td>@row</td>
+
+                            <td>@lesson.Title</td>
+
+                            <td>@lesson.Description</td>
+
+                            <td>
+                                @if (!string.IsNullOrEmpty(lesson.VideoUrl))
+                                {
+                                    <a href="@lesson.VideoUrl"
+                                       target="_blank"
+                                       class="teacher-action text-decoration-none">
+                                        ▶ مشاهده ویدئو
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span>ویدئو موجود نیست</span>
+                                }
+                            </td>
+
+                        </tr>
+
+                        row++;
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+    }
+    else
+    {
+        <p class="text-secondary">
+            هنوز جلسه‌ای برای این دوره ثبت نشده است.
+        </p>
+    }
+
+</div><div class="dashboard-section">
+    <div class="section-header">
+
+        <h4>📂 محتوای آموزشی</h4>
+
+    </div>
+
+    @if (ViewBag.Materials != null && ViewBag.Materials.Count > 0)
+    {
+        <div class="table-responsive">
+
+            <table class="table course-table">
+
+                <thead>
+                    <tr>
+                        <th>ردیف</th>
+                        <th>عنوان</th>
+                        <th>نوع</th>
+                        <th>مشاهده</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @{
+                        int materialRow = 1;
+                    }
+
+                    @foreach (var material in ViewBag.Materials)
+                    {
+                        <tr>
+
+                            <td>@materialRow</td>
+
+                            <td>@material.Title</td>
+
+                            <td>@material.MaterialType</td>
+
+                            <td>
+
+                                @if (!string.IsNullOrEmpty(material.FilePath))
+                                {
+                                    <a href="@material.FilePath"
+                                       target="_blank"
+                                       class="teacher-action text-decoration-none">
+                                        📎 مشاهده محتوا
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span>@material.FileName</span>
+                                }
+
+                            </td>
+
+                        </tr>
+
+                        materialRow++;
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+    }
+    else
+    {
+        <p class="text-secondary">
+            هنوز محتوای آموزشی برای این دوره ثبت نشده است.
+        </p>
+    }
+
+</div>

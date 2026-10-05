@@ -1,0 +1,122 @@
+﻿@{
+    Layout = null;
+    var currentAction = ViewContext.RouteData.Values["Action"]?.ToString();
+}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>EduNova Teacher</title>
+
+    <link rel="icon" type="image/" href="~/images/EdoNova.logotitle.png" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/admin.css" />
+    <link rel="stylesheet" href="~/css/teacher.css" />
+
+</head>
+<body>
+    <div class="admin-wrapper">
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <h3>EduNova</h3>
+
+                <span>پنل استاد</span>
+
+            </div>
+
+            <ul class="menu">
+
+                <ul class="menu">
+                    <li>
+
+                        <a asp-controller="Teacher"
+                           asp-action="TeacherIndex"
+                           class="@(currentAction == "TeacherIndex" ? "active" : "")">
+
+                            🏠 داشبورد
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a asp-controller="Teacher"
+                           asp-action="MyCourses"
+                           class="@(currentAction == "MyCourses" || currentAction == "ManageCourse" || currentAction == "Lessons" || currentAction == "CreateLesson" || currentAction == "CourseMaterials" || currentAction == "CreateCourseMaterial" ? "active" : "")">
+
+                            📚 دوره‌های من
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a asp-controller="Teacher"
+                           asp-action="Students"
+                           class="@(currentAction == "Students" ? "active" : "")">
+
+                            👥 دانشجویان
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a asp-controller="Teacher"
+                           asp-action="Reports"
+                           class="@(currentAction == "Reports" ? "active" : "")">
+
+                            📊 گزارش‌ها
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </ul>
+
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <h4>
+                    پنل استاد
+                </h4>
+
+                <div class="profile">
+                    استاد سیستم
+                </div>
+
+            </header>
+
+            <section class="content">
+
+                @RenderBody()
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

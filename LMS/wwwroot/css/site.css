@@ -1,0 +1,236 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; 
+}
+
+.dashboard {
+    padding: 30px;
+}
+
+    .dashboard h2 {
+        color: white;
+        margin-bottom: 30px;
+    }
+
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+
+.card-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+
+    .card-box h3 {
+        font-size: 18px;
+    }
+
+
+    .card-box p {
+        font-size: 35px;
+        font-weight: bold;
+        background: linear-gradient(135deg, #23B7AE, #D7509C);
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.admin-wrapper {
+    min-height: 100vh;
+    background-image: url('/images/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.login-error {
+    width: 100%;
+    margin: 15px 0;
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(220, 53, 69, 0.15);
+    border: 1px solid #dc3545;
+    color: #ffb3b3;
+    text-align: center;
+    font-size: 14px;
+    transition: all .3s ease;
+}
+.user-container {
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(18px);
+    border-radius: 20px;
+    padding: 30px;
+    margin: 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.3);
+}
+
+    .user-container h2 {
+        color: white;
+    }
+
+    .user-container table {
+        color: white;
+    }
+
+    .user-container thead {
+        background: #23b7ae;
+    }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.dashboard-body {
+    min-height: 100vh;
+    background: #070A12;
+    position: relative;
+    overflow-x: hidden;
+}
+
+
+
+    .dashboard-body::before {
+        content: "";
+        position: fixed;
+        width: 600px;
+        height: 600px;
+        left: -250px;
+        bottom: -250px;
+        background: #23b7ae;
+        opacity: .18;
+        filter: blur(140px);
+    }
+
+
+
+    .dashboard-body::after {
+        content: "";
+        position: fixed;
+        width: 600px;
+        height: 600px;
+        right: -250px;
+        top: -200px;
+        background: #d7509c;
+        opacity: .18;
+        filter: blur(140px);
+    }
+
+
+.dashboard-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+
+.navbar {
+    background: rgba(255,255,255,.05) !important;
+    backdrop-filter: blur(15px);
+}
+
+
+.navbar-brand {
+    color: #23b7ae !important;
+    font-size: 25px;
+}
+
+
+.nav-link {
+    color: white !important;
+}
+
+
+.dashboard-container {
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+
+.footer {
+    color: rgba(255,255,255,.5);
+    padding: 20px;
+}
+.dashboard-content {
+    width: 95%;
+    margin: 30px auto;
+    padding: 30px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 30px;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 20px 60px rgba(0,0,0,.45);
+}

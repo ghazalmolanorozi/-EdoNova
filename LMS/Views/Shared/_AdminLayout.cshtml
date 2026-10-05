@@ -1,0 +1,98 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>EduNova Admin</title>
+
+    <link rel="icon" type="image/" href="~/images/EdoNova.logotitle.png" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/admin.css" />
+
+</head>
+<body>
+    <div class="admin-wrapper">
+        <aside class="sidebar">
+
+            <div class="logo">
+                <h3>EduNova</h3>
+                <span>مدیریت آموزش</span>
+            </div>
+
+            <ul class="menu">
+
+                <li>
+                    <a asp-controller="Admin"
+                       asp-action="AdminIndex"
+                       class="@(ViewContext.RouteData.Values["Action"]?.ToString() == "AdminIndex" ? "active" : "")">
+                        🏠 داشبورد
+                    </a>
+                </li>
+
+                <li>
+                    <a asp-controller="Admin"
+                       asp-action="Users"
+                       class="@(ViewContext.RouteData.Values["Action"]?.ToString() == "Users" ||
+                          ViewContext.RouteData.Values["Action"]?.ToString() == "Create" &&
+                          ViewContext.RouteData.Values["Controller"]?.ToString() == "Admin"
+                          ? "active" : "")">
+                        👥 کاربران
+                    </a>
+                </li>
+
+                <li>
+                    <a asp-controller="Course"
+                       asp-action="Index"
+                       class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Course" ? "active" : "")">
+                        📚 دوره‌ها
+                    </a>
+                </li>
+
+                <li>
+                    <a asp-controller="Admin"
+                       asp-action="Reports"
+                       class="@(ViewContext.RouteData.Values["Action"]?.ToString() == "Reports" ? "active" : "")">
+                        📊 گزارش‌ها
+                    </a>
+                </li>
+
+            </ul>
+
+        </aside>
+
+        <!-- Main -->
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <h4>
+                    پنل مدیریت
+                </h4>
+
+                <div class="profile">
+                    مدیر سیستم
+                </div>
+
+            </header>
+
+            <section class="content">
+
+                @RenderBody()
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

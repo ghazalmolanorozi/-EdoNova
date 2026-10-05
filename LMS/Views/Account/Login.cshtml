@@ -1,0 +1,391 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <title>EduNova</title>
+    <link rel="stylesheet" href="~/css/bootstrap-icons.min.css" asp-append-version="true">
+
+
+    <style>
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        @@font-face {
+            font-family: 'Vazirmatn';
+            src: url('/fonts/Vazir.woff2') format('woff2');
+        }
+
+        * {
+            font-family: 'Vazirmatn', Tahoma, sans-serif;
+            box-sizing: border-box;
+        }
+
+
+
+        body {
+            background: linear-gradient(135deg,#080b12,#151922);
+            min-height: 100vh;
+        }
+
+
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+
+        .login-card {
+            width: 420px;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 0 30px rgba(0,0,0,0.6);
+            border-radius: 25px;
+            padding: 30px;
+            animation: slideIn 1s ease forwards;
+            opacity: 0;
+            transform: translateX(80px);
+        }
+
+
+
+
+        @@keyframes slideIn {
+
+            from {
+                opacity: 0;
+                transform: translateX(80px);
+            }
+
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+
+
+
+
+        .title {
+            color: #14c8b8;
+            font-size: 35px;
+            font-weight: 700;
+        }
+
+
+
+
+
+        .form-label {
+            color: white;
+            display: block;
+            text-align: right;
+            margin-bottom: 8px;
+        }
+
+
+
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid #14c8b8;
+            color: white;
+            border-radius: 12px;
+        }
+
+
+
+
+            .form-control:focus {
+                outline: none;
+                box-shadow: 0 0 15px #14c8b8;
+            }
+
+
+
+
+        .password-box {
+            position: relative;
+        }
+
+
+
+
+        .eye {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #14c8b8;
+            font-size: 20px;
+        }
+
+
+
+
+        .role-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            width: 100%;
+            flex-wrap: nowrap;
+            background: rgba(255,255,255,0.05);
+            padding: 12px;
+            border-radius: 15px;
+            color: white;
+        }
+
+        .role-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+
+
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: linear-gradient(90deg,#14c8b8,#d94f9d);
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+
+
+
+            .btn-login:hover {
+                box-shadow: 0 0 20px #d94f9d;
+                transform: scale(1.03);
+            }
+
+        .logo-title {
+            text-align: center;
+            width: 100%;
+        }
+
+        .logo {
+            width: 220px;
+            height: auto;
+            display: block;
+            margin: 0 auto 25px;
+        }
+
+        .eye {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #14c8b8;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+            .eye:hover {
+                color: #d94f9d;
+            }
+        .login-error {
+            width: 100%;
+            margin: 15px 0;
+            padding: 12px;
+            border-radius: 10px;
+            background: rgba(220, 53, 69, 0.15);
+            border: 1px solid #dc3545;
+            color: #ffb3b3;
+            text-align: center;
+            font-size: 14px;
+            transition: all .3s ease;
+        }
+    </style>
+
+
+</head>
+
+
+
+<body>
+
+
+    <div class="page">
+
+
+        <div class="login-card">
+
+
+            <div class="logo-title">
+                <img src="~/images/EdoNova.png"
+                     alt="EduNova Logo"
+                     class="logo">
+            </div>
+
+
+
+            <form method="post">
+
+                @if (ViewBag.Error != null)
+                {
+                    <div id="loginError" class="login-error">
+                        @ViewBag.Error
+                    </div>
+                }
+
+                <div>
+
+                    <label class="form-label">
+                        نام کاربری
+                    </label>
+
+                    <input type="text"
+                           name="UserName"
+                           class="form-control"
+                           placeholder="نام کاربری">
+
+
+                </div>
+
+
+
+                <br>
+
+
+
+                <div>
+
+
+                    <label class="form-label">
+                        رمز عبور
+                    </label>
+
+
+                    <div class="password-box">
+
+
+                        <input type="password"
+                               id="Password"
+                               name="Password"
+                               class="form-control"
+                               placeholder="رمز عبور">
+                        <span class="eye" onclick="togglePassword()">
+                            <i id="eyeIcon" class="bi bi-eye-fill"></i>
+                        </span>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <br>
+
+
+
+                <div>
+
+
+                    <label class="form-label">
+                        ورود به عنوان
+                    </label>
+
+
+                    <div class="role-box">
+
+                        <label class="role-item">
+                            <input type="radio" name="Role" value="Admin" checked />
+                            مدیر
+                        </label>
+
+                        <label class="role-item">
+                            <input type="radio" name="Role" value="Teacher" />
+                            استاد
+                        </label>
+
+                        <label class="role-item">
+                            <input type="radio" name="Role" value="Student" />
+                            دانشجو
+                        </label>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+                <button class="btn-login" type="submit">
+
+                    ورود
+
+                </button>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+    <script>
+
+        function togglePassword() {
+
+            var password = document.getElementById("Password");
+            var icon = document.getElementById("eyeIcon");
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+                icon.classList.remove("bi-eye-fill");
+                icon.classList.add("bi-eye-slash-fill");
+
+            }
+
+            else {
+
+                password.type = "password";
+                icon.classList.remove("bi-eye-slash-fill");
+                icon.classList.add("bi-eye-fill");
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

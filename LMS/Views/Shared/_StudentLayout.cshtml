@@ -1,0 +1,120 @@
+﻿@{
+    Layout = null;
+
+    var currentAction = ViewContext.RouteData.Values["Action"]?.ToString();
+
+}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>EduNova Student</title>
+
+    <link rel="icon" type="image/" href="~/images/EdoNova.logotitle.png" />
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet"
+          href="~/css/admin.css" />
+
+    <link rel="stylesheet"
+          href="~/css/teacher.css" />
+
+</head>
+<body>
+    <div class="admin-wrapper">
+
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <h3>EduNova</h3>
+
+                <span>پنل دانشجو</span>
+
+            </div>
+
+
+            <ul class="menu">
+
+                <li>
+
+                    <a asp-controller="Student"
+                       asp-action="StudentIndex"
+                       class="@(currentAction == "StudentIndex" ? "active" : "")">
+
+                        🏠 داشبورد
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a asp-controller="Student"
+                       asp-action="Courses"
+                       class="@(currentAction == "Courses" ? "active" : "")">
+
+                        📚 دوره‌ها
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a asp-controller="Student"
+                       asp-action="MyCourses"
+                       class="@(currentAction == "MyCourses" || currentAction == "CourseDetails" ? "active" : "")">
+
+                        🎓 دوره‌های من
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </aside>
+
+
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <h4>
+                    پنل دانشجو
+                </h4>
+
+                <div class="profile">
+                    دانشجو
+                </div>
+
+            </header>
+
+
+            <section class="content">
+
+                @RenderBody()
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

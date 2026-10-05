@@ -1,0 +1,135 @@
+﻿@{
+    ViewData["Title"] = "داشبورد مدیریت";
+    Layout = "_AdminLayout";
+}
+
+
+<div class="dashboard-header">
+    <h2>👋 خوش آمدید مدیر سیستم</h2>
+    <p>نمای کلی وضعیت سامانه EduNova</p>
+</div>
+
+
+
+<div class="dashboard-cards">
+
+
+    <div class="dash-card users-card">
+
+        <div class="card-icon">
+            <i class="bi bi-people-fill"></i>
+        </div>
+
+        <h5>کاربران</h5>
+        <h2>@ViewBag.UsersCount</h2>
+        <span>کاربر ثبت شده</span>
+
+    </div>
+
+
+
+    <div class="dash-card course-card">
+
+        <div class="card-icon">
+            <i class="bi bi-book-fill"></i>
+        </div>
+
+        <h5>دوره‌ها</h5>
+        <h2>@ViewBag.CoursesCount</h2>
+        <span>دوره فعال</span>
+
+    </div>
+
+
+
+    <div class="dash-card teacher-card">
+
+        <div class="card-icon">
+            <i class="bi bi-person-workspace"></i>
+        </div>
+
+        <h5>اساتید</h5>
+        <h2>@ViewBag.TeachersCount</h2>
+        <span>استاد فعال</span>
+
+    </div>
+
+
+
+    <div class="dash-card student-card">
+
+        <div class="card-icon">
+            <i class="bi bi-mortarboard-fill"></i>
+        </div>
+
+        <h5>دانشجویان</h5>
+        <h2>@ViewBag.StudentsCount</h2>
+        <span>دانشجوی ثبت شده</span>
+
+    </div>
+
+
+</div>
+
+
+
+<div class="dashboard-section">
+
+    <h4>🕒 آخرین کاربران ثبت شده</h4>
+
+
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>شناسه</th>
+                <th>نام کاربری</th>
+                <th>نقش</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+
+            @foreach (var user in ViewBag.LatestUsers)
+            {
+                <tr>
+
+                    <td>@user.UserID</td>
+
+                    <td>@user.UserName</td>
+
+
+                    <td>
+
+                        @if (user.Role == "Admin")
+                        {
+                            <span class="role-admin">
+                                مدیر
+                            </span>
+                        }
+
+                        else if (user.Role == "Teacher")
+                        {
+                            <span class="role-teacher">
+                                استاد
+                            </span>
+                        }
+
+                        else
+                        {
+                            <span class="role-student">
+                                دانشجو
+                            </span>
+                        }
+
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>

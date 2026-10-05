@@ -1,0 +1,64 @@
+﻿@model LMS.Models.Course
+
+@{
+ViewData["Title"] = "مدیریت دوره";
+Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<div class="dashboard-header">
+    <h2>📚 مدیریت دوره</h2>
+
+    <p>
+        مدیریت محتوای آموزشی، جلسات و دانشجویان دوره
+    </p>
+
+</div><div class="manage-course-card">
+    <div class="course-icon">
+        📖
+    </div>
+
+    <h3>
+        @Model.Title
+    </h3>
+
+    <p>
+        @Model.Description
+    </p>
+
+    <div class="manage-actions">
+
+        
+        <a asp-controller="Teacher"
+           asp-action="Lessons"
+           asp-route-id="@Model.CourseID"
+           class="teacher-action manage-link">
+
+            📝 افزودن جلسه
+
+        </a>
+
+
+        
+        <a asp-controller="Teacher"
+           asp-action="Students"
+           asp-route-courseId="@Model.CourseID"
+           class="teacher-action manage-link">
+
+            👥 دانشجویان دوره
+
+        </a>
+
+
+        
+        <a asp-controller="Teacher"
+           asp-action="CourseMaterials"
+           asp-route-id="@Model.CourseID"
+           class="teacher-action manage-link">
+
+            📂 محتوای آموزشی
+
+        </a>
+
+    </div>
+
+</div>

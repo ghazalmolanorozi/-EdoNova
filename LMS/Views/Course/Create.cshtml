@@ -1,0 +1,93 @@
+﻿@model LMS.Models.Course
+
+@{
+    ViewData["Title"] = "افزودن دوره جدید";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="dashboard-section">
+
+    <h3>افزودن دوره جدید</h3>
+
+
+    <form asp-action="Create" method="post">
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                عنوان دوره
+            </label>
+
+            <input asp-for="Title" class="form-control" />
+
+        </div>
+
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                توضیحات
+            </label>
+
+            <textarea asp-for="Description"
+                      class="form-control">
+            </textarea>
+
+        </div>
+        <div class="mb-3">
+
+            <label class="form-label">
+                انتخاب استاد
+            </label>
+
+
+            <select asp-for="TeacherID" class="form-control">
+
+                <option value="">
+                    -- انتخاب استاد --
+                </option>
+
+
+                @foreach (var teacher in ViewBag.Teachers)
+                {
+                    <option value="@teacher.UserID">
+                        @teacher.UserName
+                    </option>
+                }
+
+
+            </select>
+
+        </div>
+
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                ظرفیت
+            </label>
+
+            <input asp-for="Capacity"
+                   class="form-control" />
+
+        </div>
+
+
+
+        <button type="submit" class="btn btn-success">
+            ذخیره دوره
+        </button>
+
+
+        <a asp-action="Index" class="btn btn-secondary">
+            بازگشت
+        </a>
+
+
+    </form>
+
+</div>

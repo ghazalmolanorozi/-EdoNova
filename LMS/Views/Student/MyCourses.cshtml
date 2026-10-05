@@ -1,0 +1,57 @@
+﻿@model IEnumerable<LMS.Models.Course>
+
+@{
+ViewData["Title"] = "دوره‌های من";
+Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<div class="dashboard-header">
+    <h2>📚 دوره‌های ثبت‌نام شده</h2>
+
+    <p>
+        دوره‌هایی که در آن‌ها ثبت‌نام کرده‌اید
+    </p>
+
+</div><div class="course-cards">
+    @if (Model != null && Model.Any())
+{
+    foreach (var item in Model)
+    {
+    <div class="course-card">
+
+        <h4>
+            @item.Title
+        </h4>
+
+        <p>
+            @item.Description
+        </p>
+
+        <a asp-controller="Student"
+           asp-action="CourseDetails"
+           asp-route-id="@item.CourseID"
+           class="teacher-action text-decoration-none">
+
+            📖 ورود به دوره
+
+        </a>
+
+    </div>
+    }
+}
+else
+{
+    <div class="dashboard-section">
+
+        <h4 class="text-white">
+            هنوز در دوره‌ای ثبت‌نام نکرده‌اید.
+        </h4>
+
+        <p class="text-secondary">
+            از بخش دوره‌ها می‌توانید دوره موردنظر خود را انتخاب و ثبت‌نام کنید.
+        </p>
+
+    </div>
+}
+
+</div>

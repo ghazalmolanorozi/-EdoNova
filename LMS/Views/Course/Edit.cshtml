@@ -1,0 +1,68 @@
+﻿@model LMS.Models.Course
+
+@{
+    ViewData["Title"] = "ویرایش دوره";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="dashboard-section">
+
+    <h3>ویرایش دوره</h3>
+
+
+    <form asp-action="Edit" method="post">
+
+        <input type="hidden" asp-for="CourseID" />
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                عنوان دوره
+            </label>
+
+            <input asp-for="Title" class="form-control" />
+
+        </div>
+
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                توضیحات
+            </label>
+
+            <textarea asp-for="Description"
+                      class="form-control"></textarea>
+
+        </div>
+
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                ظرفیت
+            </label>
+
+            <input asp-for="Capacity" class="form-control" />
+
+        </div>
+
+
+
+        <button type="submit" class="btn btn-success">
+            ذخیره تغییرات
+        </button>
+
+
+        <a asp-action="Index" class="btn btn-secondary">
+            بازگشت
+        </a>
+
+
+    </form>
+
+</div>

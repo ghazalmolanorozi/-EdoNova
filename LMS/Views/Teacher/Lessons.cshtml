@@ -1,0 +1,143 @@
+﻿@model IEnumerable<LMS.Models.Lesson>
+
+@{
+    ViewData["Title"] = "جلسات دوره";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+
+    var course = ViewBag.Course as LMS.Models.Course;
+
+}
+
+<div class="dashboard-header">
+    <h2>🎬 جلسات دوره</h2>
+
+    <p>
+        مدیریت جلسات و ویدئوهای آموزشی دوره
+        <strong>@course?.Title</strong>
+    </p>
+
+</div><div class="dashboard-section">
+          <div class="section-header">
+
+              <h4>
+                  🎬 لیست جلسات
+              </h4>
+
+              <div class="d-flex gap-2">
+
+                  <a asp-controller="Teacher"
+                     asp-action="CreateLesson"
+                     asp-route-courseId="@course?.CourseID"
+                     class="teacher-action manage-link">
+
+                      ➕ افزودن جلسه
+
+                  </a>
+
+                  @if (course != null)
+                  {
+                      <a asp-controller="Teacher"
+                         asp-action="ManageCourse"
+                         asp-route-id="@course.CourseID"
+                         class="teacher-action manage-link">
+
+                          ↩️ بازگشت به مدیریت دوره
+
+                      </a>
+                  }
+
+              </div>
+
+          </div>
+
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+
+            <table class="table course-table">
+
+                <thead>
+                    <tr>
+                        <th>شماره</th>
+                        <th>عنوان جلسه</th>
+                        <th>توضیحات</th>
+                        <th>ویدئو</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var lesson in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @lesson.LessonID
+                            </td>
+
+                            <td>
+                                @lesson.Title
+                            </td>
+
+                            <td>
+                                @lesson.Description
+                            </td>
+
+                            <td>
+
+                                @if (!string.IsNullOrEmpty(lesson.VideoUrl))
+                                {
+                                    <a href="@lesson.VideoUrl"
+                                       target="_blank"
+                                       class="teacher-action manage-link">
+                                        ▶ مشاهده ویدئو
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">
+                                        ویدئو ثبت نشده
+                                    </span>
+                                }
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+    }
+    else
+    {
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                🎬
+            </div>
+
+            <h4>
+                هنوز جلسه‌ای برای این دوره ثبت نشده است.
+            </h4>
+
+            <p>
+                برای شروع، اولین جلسه آموزشی دوره را اضافه کنید.
+            </p>
+
+            <a asp-controller="Teacher"
+               asp-action="CreateLesson"
+               asp-route-courseId="@course?.CourseID"
+               class="teacher-action manage-link">
+
+                ➕ افزودن اولین جلسه
+
+            </a>
+
+        </div>
+    }
+
+</div>

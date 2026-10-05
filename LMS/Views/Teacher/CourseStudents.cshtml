@@ -1,0 +1,123 @@
+﻿@model IEnumerable<LMS.Models.User>
+
+@{
+    ViewData["Title"] = "دانشجویان دوره";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+
+    var course = ViewBag.Course as LMS.Models.Course;
+}
+
+<div class="dashboard-header">
+
+    <h2>👥 دانشجویان دوره</h2>
+
+    <p>
+        دانشجویان ثبت‌نام‌شده در دوره
+        <strong>@course?.Title</strong>
+    </p>
+
+</div>
+
+
+<div class="dashboard-section">
+
+    <div class="section-header">
+
+        <h4>
+            👨‍🎓 لیست دانشجویان
+        </h4>
+
+        <span class="capacity">
+            @(Model?.Count() ?? 0) دانشجو
+        </span>
+
+    </div>
+
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+
+            <table class="table course-table">
+
+                <thead>
+                    <tr>
+
+                        <th>شماره</th>
+
+                        <th>نام کاربری</th>
+
+                        <th>نقش</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @{
+                        int row = 1;
+                    }
+
+                    @foreach (var student in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @row
+                            </td>
+
+                            <td>
+                                👤 @student.UserName
+                            </td>
+
+                            <td>
+                                <span class="capacity">
+                                    دانشجو
+                                </span>
+                            </td>
+
+                        </tr>
+
+                        row++;
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+    }
+    else
+    {
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                👥
+            </div>
+
+            <h4>
+                هنوز دانشجویی در این دوره ثبت‌نام نکرده است.
+            </h4>
+
+            <p>
+                پس از ثبت‌نام دانشجویان، فهرست آن‌ها در این بخش نمایش داده می‌شود.
+            </p>
+
+        </div>
+    }
+
+</div>
+
+
+<div class="mt-3">
+
+    <a asp-controller="Teacher"
+       asp-action="ManageCourse"
+       asp-route-id="@course?.CourseID"
+       class="teacher-action manage-link">
+
+        ↩️ بازگشت به مدیریت دوره
+
+    </a>
+
+</div>

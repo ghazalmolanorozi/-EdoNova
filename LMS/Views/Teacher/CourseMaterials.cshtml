@@ -1,0 +1,146 @@
+﻿@model IEnumerable<LMS.Models.CourseMaterial>
+
+@{
+    ViewData["Title"] = "محتوای آموزشی";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+
+    var course = ViewBag.Course as LMS.Models.Course;
+
+}
+
+<div class="dashboard-header">
+    <h2>📂 محتوای آموزشی</h2>
+
+    <p>
+        مدیریت محتوای آموزشی دوره
+        <strong>@course?.Title</strong>
+    </p>
+
+</div><div class="dashboard-section">
+       <div class="section-header">
+
+    <h4>
+        لیست محتوا
+    </h4>
+
+    <div class="d-flex gap-2">
+
+        <a asp-controller="Teacher"
+           asp-action="CreateCourseMaterial"
+           asp-route-courseId="@course?.CourseID"
+           class="teacher-action manage-link">
+
+            ➕ افزودن محتوا
+
+        </a>
+
+        <a asp-controller="Teacher"
+           asp-action="ManageCourse"
+           asp-route-id="@course?.CourseID"
+           class="teacher-action manage-link">
+
+            ↩️ بازگشت به مدیریت دوره
+
+        </a>
+
+    </div>
+
+</div>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+
+            <table class="table course-table">
+
+                <thead>
+                    <tr>
+                        <th>شماره</th>
+                        <th>عنوان</th>
+                        <th>توضیحات</th>
+                        <th>نوع محتوا</th>
+                        <th>فایل</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var material in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @material.CourseMaterialID
+                            </td>
+
+                            <td>
+                                @material.Title
+                            </td>
+
+                            <td>
+                                @material.Description
+                            </td>
+
+                            <td>
+                                <span class="capacity">
+                                    @material.MaterialType
+                                </span>
+                            </td>
+
+                            <td>
+
+                                @if (!string.IsNullOrEmpty(material.FilePath))
+                                {
+                                    <a href="@material.FilePath"
+                                       target="_blank"
+                                       class="teacher-action manage-link">
+                                        📎 مشاهده فایل
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">
+                                        فایلی ثبت نشده
+                                    </span>
+                                }
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+    }
+    else
+    {
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                📂
+            </div>
+            
+            <h4>
+                هنوز محتوای آموزشی ثبت نشده است.
+            </h4>
+
+            <p>
+                برای شروع، اولین محتوای آموزشی این دوره را اضافه کنید.
+            </p>
+
+            <a asp-controller="Teacher"
+               asp-action="CreateCourseMaterial"
+               asp-route-courseId="@course?.CourseID"
+               class="teacher-action manage-link">
+
+                ➕ افزودن اولین محتوا
+
+            </a>
+
+        </div>
+    }
+
+</div>

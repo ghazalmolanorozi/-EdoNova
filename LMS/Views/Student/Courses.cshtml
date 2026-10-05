@@ -1,0 +1,118 @@
+﻿@model IEnumerable<LMS.Models.Course>
+
+@{
+    ViewData["Title"] = "دوره‌ها";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+
+    var enrolledCourseIds = ViewBag.EnrolledCourseIds
+        as List<int> ?? new List<int>();
+}
+
+<div class="dashboard-header">
+
+    <h2>📚 دوره‌های آموزشی</h2>
+
+    <p>
+        دوره موردنظر خود را انتخاب و در آن ثبت‌نام کنید.
+    </p>
+
+</div>
+
+
+@if (TempData["Message"] != null)
+{
+<div class="alert alert-info text-center">
+    @TempData["Message"]
+</div>
+}
+
+
+<div class="dashboard-cards">
+
+    @if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            bool isEnrolled = enrolledCourseIds.Contains(item.CourseID);
+
+    <div class="dash-card">
+
+        <div class="card-icon">
+            📚
+        </div>
+
+        <h5>
+            @item.Title
+        </h5>
+
+        <p class="text-secondary mt-3">
+            @item.Description
+        </p>
+
+
+        @if (isEnrolled)
+                {
+        <div class="mt-3">
+
+            <span class="capacity">
+                ✅ ثبت‌نام شده
+            </span>
+
+        </div>
+
+        <div class="mt-3">
+
+            <a asp-controller="Student"
+               asp-action="CourseDetails"
+               asp-route-id="@item.CourseID"
+               class="teacher-action manage-link">
+
+                📖 ورود به دوره
+
+            </a>
+
+        </div>
+                }
+                else
+                {
+        <div class="mt-3">
+
+            <a asp-controller="Student"
+               asp-action="Enroll"
+               asp-route-id="@item.CourseID"
+               class="teacher-action manage-link">
+
+                🎓 ثبت‌نام در دوره
+
+            </a>
+
+        </div>
+                }
+
+    </div>
+        }
+    }
+    else
+    {
+    <div class="dashboard-section">
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                📚
+            </div>
+
+            <h4>
+                هنوز دوره‌ای ایجاد نشده است.
+            </h4>
+
+            <p>
+                در حال حاضر دوره‌ای برای نمایش وجود ندارد.
+            </p>
+
+        </div>
+
+    </div>
+    }
+
+</div>

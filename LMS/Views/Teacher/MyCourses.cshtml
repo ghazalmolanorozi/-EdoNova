@@ -1,0 +1,126 @@
+﻿@model IEnumerable<LMS.Models.Course>
+
+@{
+    ViewData["Title"] = "دوره‌های من";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<div class="dashboard-header">
+
+    <h2>📚 دوره‌های من</h2>
+
+    <p>
+        دوره‌هایی که شما تدریس می‌کنید
+    </p>
+
+</div>
+
+
+<div class="dashboard-section">
+
+    <div class="section-header">
+
+        <h4>
+            📚 لیست دوره‌ها
+        </h4>
+
+        <span class="capacity">
+            @(Model?.Count() ?? 0) دوره
+        </span>
+
+    </div>
+
+
+    @if (Model != null && Model.Any())
+    {
+    <div class="table-responsive">
+
+        <table class="table course-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        عنوان دوره
+                    </th>
+
+                    <th>
+                        توضیحات
+                    </th>
+
+                    <th>
+                        ظرفیت
+                    </th>
+
+                    <th>
+                        عملیات
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                @foreach (var item in Model)
+                    {
+                <tr>
+
+                    <td>
+                        @item.Title
+                    </td>
+
+                    <td>
+                        @item.Description
+                    </td>
+
+                    <td>
+                        <span class="capacity">
+                            @item.Capacity نفر
+                        </span>
+                    </td>
+
+                    <td>
+
+                        <a asp-controller="Teacher"
+                           asp-action="ManageCourse"
+                           asp-route-id="@item.CourseID"
+                           class="teacher-action manage-link">
+
+                            ⚙️ مدیریت
+
+                        </a>
+
+                    </td>
+
+                </tr>
+                    }
+
+            </tbody>
+
+        </table>
+
+    </div>
+    }
+    else
+    {
+    <div class="empty-state">
+
+        <div class="empty-icon">
+            📚
+        </div>
+
+        <h4>
+            هنوز دوره‌ای برای شما ثبت نشده است.
+        </h4>
+
+        <p>
+            دوره‌هایی که به شما اختصاص داده شوند، در این قسمت نمایش داده خواهند شد.
+        </p>
+
+    </div>
+    }
+
+</div>

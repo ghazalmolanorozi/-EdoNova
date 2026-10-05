@@ -1,0 +1,47 @@
+﻿@model LMS.Models.User
+
+@{
+    ViewData["Title"] = "ویرایش کاربر";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+
+    <h2>✏️ ویرایش کاربر</h2>
+
+    <form asp-action="Edit" method="post">
+
+        <input type="hidden" asp-for="UserID" />
+
+        <div class="mb-3">
+            <label class="form-label">نام کاربری</label>
+            <input asp-for="UserName" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">رمز عبور</label>
+            <input asp-for="Password" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">نقش</label>
+
+            <select asp-for="Role" class="form-control">
+                <option value="Admin">مدیر</option>
+                <option value="Teacher">استاد</option>
+                <option value="Student">دانشجو</option>
+            </select>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            ذخیره تغییرات
+        </button>
+
+        <a asp-action="Users" class="btn btn-secondary">
+            بازگشت
+        </a>
+
+    </form>
+
+</div>

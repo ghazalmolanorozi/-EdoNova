@@ -1,0 +1,133 @@
+﻿@model IEnumerable<LMS.Models.Course>
+
+@{
+    ViewData["Title"] = "مدیریت دوره‌ها";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="dashboard-header">
+
+    <h2>📚 مدیریت دوره‌ها</h2>
+
+    <p>
+        مدیریت، افزودن و ویرایش دوره‌های آموزشی EduNova
+    </p>
+
+</div>
+
+
+
+<div class="dashboard-section">
+
+
+    <div class="section-header">
+
+        <h4>
+            لیست دوره‌ها
+        </h4>
+
+
+        <a asp-action="Create" class="btn btn-success">
+
+            <i class="bi bi-plus-circle"></i>
+            افزودن دوره جدید
+
+        </a>
+
+    </div>
+
+
+
+    <table class="table course-table">
+
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    عنوان دوره
+                </th>
+
+                <th>
+                    توضیحات
+                </th>
+
+                <th>
+                    ظرفیت
+                </th>
+
+                <th>
+                    عملیات
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+
+        <tbody>
+
+
+            @foreach (var item in Model)
+            {
+
+                <tr>
+
+                    <td>
+                        @item.Title
+                    </td>
+
+
+                    <td>
+                        @item.Description
+                    </td>
+
+
+                    <td>
+                        <span class="capacity">
+                            @item.Capacity نفر
+                        </span>
+                    </td>
+
+
+                    <td>
+
+
+                        <a asp-action="Edit"
+                           asp-route-id="@item.CourseID"
+                           class="btn btn-warning btn-sm">
+
+                            ✏️ ویرایش
+
+                        </a>
+
+
+
+                        <a asp-action="Delete"
+                           asp-route-id="@item.CourseID"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('آیا از حذف این دوره مطمئن هستید؟');">
+
+                            🗑 حذف
+
+                        </a>
+
+
+                    </td>
+
+
+                </tr>
+
+            }
+
+
+        </tbody>
+
+
+    </table>
+
+
+</div>

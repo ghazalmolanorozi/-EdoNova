@@ -1,0 +1,100 @@
+﻿@model IEnumerable<LMS.Models.User>
+
+@{
+    ViewData["Title"] = "دانشجویان";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<div class="students-container">
+
+    <div class="dashboard-header">
+
+        <div>
+            <h2>👥 دانشجویان</h2>
+
+            <p>
+                لیست دانشجویان ثبت‌نام‌شده در دوره‌های شما
+            </p>
+        </div>
+
+        <div class="student-count">
+            <span>@Model.Count()</span>
+            <small>دانشجو</small>
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-card">
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+
+                <table class="table table-dark table-hover align-middle">
+
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>نام کاربری</th>
+                            <th>نقش</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @{
+                            int row = 1;
+                        }
+
+                        @foreach (var student in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @row
+                                </td>
+
+                                <td>
+                                    @student.UserName
+                                </td>
+
+                                <td>
+                                    <span class="badge bg-info">
+                                        دانشجو
+                                    </span>
+                                </td>
+
+                            </tr>
+
+                            row++;
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+        else
+        {
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    👨‍🎓
+                </div>
+
+                <h4>
+                    هنوز دانشجویی ثبت‌نام نکرده است
+                </h4>
+
+                <p>
+                    در حال حاضر هیچ دانشجویی در دوره‌های شما ثبت‌نام نشده است.
+                </p>
+
+            </div>
+        }
+
+    </div>
+
+</div>

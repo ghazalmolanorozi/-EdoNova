@@ -1,0 +1,222 @@
+﻿@{
+    ViewData["Title"] = "داشبورد دانشجو";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<div class="dashboard-header">
+
+    <h2>🎓 داشبورد دانشجو</h2>
+
+    <p>
+        به پنل آموزشی EduNova خوش آمدید.
+    </p>
+
+</div>
+
+<div class="dashboard-cards">
+
+
+    <div class="dash-card course-card">
+
+        <div class="card-icon">
+            📚
+        </div>
+
+        <h5>
+            دوره‌های من
+        </h5>
+
+        <h2>
+            @ViewBag.CoursesCount
+        </h2>
+
+        <span>
+            دوره ثبت‌نام شده
+        </span>
+
+    </div>
+
+
+   
+
+    <div class="dash-card teacher-card">
+
+        <div class="card-icon">
+            🎬
+        </div>
+
+        <h5>
+            جلسات آموزشی
+        </h5>
+
+        <h2>
+            @ViewBag.LessonsCount
+        </h2>
+
+        <span>
+            جلسه قابل مشاهده
+        </span>
+
+    </div>
+
+
+    
+
+    <div class="dash-card users-card">
+
+        <div class="card-icon">
+            📂
+        </div>
+
+        <h5>
+            محتوای آموزشی
+        </h5>
+
+        <h2>
+            @ViewBag.MaterialsCount
+        </h2>
+
+        <span>
+            محتوای آموزشی
+        </span>
+
+    </div>
+
+
+
+
+    <div class="dash-card student-card">
+
+        <div class="card-icon">
+            🎓
+        </div>
+
+        <h5>
+            ثبت‌نام‌ها
+        </h5>
+
+        <h2>
+            @ViewBag.EnrollmentCount
+        </h2>
+
+        <span>
+            ثبت‌نام در دوره‌ها
+        </span>
+
+    </div>
+
+</div>
+
+
+
+
+<div class="dashboard-section">
+
+    <div class="section-header">
+
+        <h4>
+            📚 دوره‌های من
+        </h4>
+
+        <a asp-controller="Student"
+           asp-action="MyCourses"
+           class="teacher-action manage-link">
+
+            مشاهده همه
+
+        </a>
+
+    </div>
+
+
+    @if (ViewBag.Courses != null && ViewBag.Courses.Count > 0)
+    {
+    <div class="table-responsive">
+
+        <table class="table course-table">
+
+            <thead>
+
+                <tr>
+                    <th>ردیف</th>
+                    <th>عنوان دوره</th>
+                    <th>توضیحات</th>
+                    <th>ورود</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @{
+                        int row = 1;
+                }
+
+                @foreach (var course in ViewBag.Courses)
+                    {
+                <tr>
+
+                    <td>
+                        @row
+                    </td>
+
+                    <td>
+                        @course.Title
+                    </td>
+
+                    <td>
+                        @course.Description
+                    </td>
+
+                    <td>
+
+                        <a asp-controller="Student"
+                           asp-action="CourseDetails"
+                           asp-route-id="@course.CourseID"
+                           class="teacher-action manage-link">
+
+                            📖 ورود به دوره
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                        row++;
+                    }
+
+            </tbody>
+
+        </table>
+
+    </div>
+    }
+    else
+    {
+    <div class="empty-state">
+
+        <div class="empty-icon">
+            📚
+        </div>
+
+        <h4>
+            هنوز در هیچ دوره‌ای ثبت‌نام نکرده‌اید.
+        </h4>
+
+        <p>
+            از بخش دوره‌ها می‌توانید دوره موردنظر خود را انتخاب و ثبت‌نام کنید.
+        </p>
+
+        <a asp-controller="Student"
+           asp-action="Courses"
+           class="teacher-action manage-link">
+
+            📚 مشاهده دوره‌ها
+
+        </a>
+
+    </div>
+    }
+
+</div>

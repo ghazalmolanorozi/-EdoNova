@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "افزودن جلسه";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+
+    var course = ViewBag.Course as LMS.Models.Course;
+
+}
+
+<div class="dashboard-header">
+    <h2>➕ افزودن جلسه آموزشی</h2>
+
+    <p>
+        افزودن جلسه جدید به دوره
+        <strong>@course?.Title</strong>
+    </p>
+
+</div><div class="dashboard-section">
+    <form asp-controller="Teacher"
+          asp-action="CreateLesson"
+          method="post">
+
+        @Html.AntiForgeryToken()
+
+        <input type="hidden"
+               name="courseId"
+               value="@course?.CourseID" />
+
+
+        <div class="form-group mb-3">
+
+            <label class="form-label">
+                عنوان جلسه
+            </label>
+
+            <input type="text"
+                   name="title"
+                   class="form-control"
+                   placeholder="مثلاً جلسه اول: آشنایی با دوره"
+                   required />
+
+        </div>
+
+
+        <div class="form-group mb-3">
+
+            <label class="form-label">
+                توضیحات جلسه
+            </label>
+
+            <textarea name="description"
+                      class="form-control"
+                      rows="5"
+                      placeholder="توضیحات مربوط به محتوای این جلسه را وارد کنید"></textarea>
+
+        </div>
+
+
+        <div class="form-group mb-4">
+
+            <label class="form-label">
+                لینک ویدئوی آموزشی
+            </label>
+
+            <input type="text"
+                   name="videoUrl"
+                   class="form-control"
+                   placeholder="مثلاً https://example.com/video.mp4" />
+
+            <small class="text-muted">
+                لینک ویدئوی آموزشی را وارد کنید.
+            </small>
+
+        </div>
+
+
+        <div class="d-flex gap-2">
+
+            <button type="submit"
+                    class="teacher-action">
+                💾 ثبت جلسه
+            </button>
+            <a asp-controller="Teacher"
+               asp-action="ManageCourse"
+               asp-route-id="@course?.CourseID"
+               class="teacher-action manage-link">
+
+                ↩️ بازگشت به مدیریت دوره
+
+            </a>
+
+        </div>
+
+    </form>
+
+</div>

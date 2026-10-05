@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "گزارش‌ها";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="dashboard-header">
+
+    <h2>📊 گزارش‌های سیستم</h2>
+
+    <p>
+        آمار کلی سامانه EduNova
+    </p>
+
+</div>
+
+
+<div class="dashboard-cards">
+
+
+    <div class="dash-card">
+
+        <h5>
+            👥 کل کاربران
+        </h5>
+
+        <h2>
+            @ViewBag.UsersCount
+        </h2>
+
+    </div>
+
+
+
+    <div class="dash-card">
+
+        <h5>
+            🎓 دانشجویان
+        </h5>
+
+        <h2>
+            @ViewBag.StudentsCount
+        </h2>
+
+    </div>
+
+
+
+    <div class="dash-card">
+
+        <h5>
+            👨‍🏫 اساتید
+        </h5>
+
+        <h2>
+            @ViewBag.TeachersCount
+        </h2>
+
+    </div>
+
+
+
+    <div class="dash-card">
+
+        <h5>
+            📚 دوره‌ها
+        </h5>
+
+        <h2>
+            @ViewBag.CoursesCount
+        </h2>
+
+    </div>
+
+
+</div>
